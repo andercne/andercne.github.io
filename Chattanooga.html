@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <title></title>
+      
+      <style type="text/css">
+	#imgpos {
+		position:absolute;
+		left:11%;
+		top:3%;
+		margin-left:-110px;
+		margin-top:-40px;
+		}
+          </style>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>JOB MONITORING - Chattanooga </h1>
+    <h3>M100</h3>
+    <p> M100 é um processo de consumo executado para materiais não jit.<br></p>
+    <p><n> > Horário:</n> </p>
+    <p> Este processo a cada 6 horas às 00: 05,6: 00,12: 00,18: 00 CET. (Horário de sistema)</p>
+   
+    <h5>
+      1.	Sequência correta para M100 :<br>
+        /VWK/VOA_M100_REQUESTFILE* (esse job irá solicitar o arquivo da equipe do PROLOG na pasta CUST_IP)<br>
+        /VWK/VOA_M100_LOAD RESPONSE* (Este Job irá processar o arquivo solicitado DFX.KMPR62.CYCCNTRS.xxxxxxxxxxxxxxxx)<br>
+        /VWK/VOA_M100_STAT_00_DOWLOAD<br>
+        /VWK/VOA_M100_MONITOR_POSTING*<br>
+    </h5>
+ 
+      
+        2. Ordem dos trabalhos<br>
+
+/ VWK / VOA_M100_REQUESTFILE 3-12 será executado às 00:05 CET<br>
+/ VWK / VOA_M100_REQUESTFILE 4-18 será executado às 6:00 CET<br>
+/ VWK / VOA_M100_REQUESTFILE 1-00 será executado às 12:00 CET<br>
+/ VWK / VOA_M100_REQUESTFILE 2-06 será executado às 18:00 CET<br><br>
+
+Os Jobs acima são os Jobs que solicitam os arquivos para o PROLOG, e que serão executados a cada 6 horas de acordo com o horário do sistema.<br>
+
+        <img src="m100_1.jpeg.jpg" alt="some text" width=500 height=300 id="imgpos">
+      
+      
+    <h5>
+      Agora, se virmos o / VWK / VOA_M100_REQUESTFILE 3-12, ele será executado às 00:05<br>
+Em seguida, vem a / VWK / VOA_M100_LOAD RESPONSE, que será executada após 1 hora.<br>
+Em seguida, / VWK / VOA_M100_STAT_00_DOWLOAD que será executado após 5 minutos.<br>
+E então / VWK / VOA_M100_MONITOR_POSTING, que será executado após 5 minutos.<br>
+
+      
+      </h5>
+      
+      <h5>
+      Este mesmo formato será seguido para todas as 4 variantes destacadas na imagem acima, ou seja,
+3-12, 4-18, 1-00, 2-06.<br>
+2.	Function of the Jobs.<br><br>
+
+	/ VWK / VOA_M100_REQUESTFILE - Este JOB solicitará o arquivo da equipe de PROLOG, e o arquivo irá chegar na pasta CUST_IP.<br>
+
+Esse arquivo solicitado você pode ver no SE16N (T- Code) na tabela / VWK / VPGINLE09D2<br>
+Coloque a data e execute-a.<br>
+          
+                  <img src="m100_2.png" alt="some text" width=500 height=300>
+
+          </h5>
+
+      
+      
+  </body>
+</html>
